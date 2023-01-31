@@ -82,10 +82,6 @@ public class SignUpPage extends AppCompatActivity {
                 {
                     Toast.makeText(SignUpPage.this, "Please enter a password", Toast.LENGTH_SHORT).show();
                 }
-                if(confirmPassword.getText().toString().isEmpty())
-                {
-
-                }
                 else if(Patterns.EMAIL_ADDRESS.matcher(userEmailId).matches())
                 {
                     boolean check = checkNitcEmail(userEmailId);
