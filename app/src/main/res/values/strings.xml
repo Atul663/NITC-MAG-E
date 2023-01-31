@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Nitc Mag-e</string>
+    <string name="nitc_mag_e">NITC MAG-E</string>
+    <string name="educational">Educational</string>
+    <string name="fest">fest</string>
+    <string name="technical">Technical</string>
+    <string name="sport">Sport</string>
+    <string name="home">Home</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+</resources>
