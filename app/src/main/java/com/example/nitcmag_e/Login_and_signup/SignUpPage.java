@@ -122,18 +122,13 @@ public class SignUpPage extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(SignUpPage.this, "Your account is created successfully", Toast.LENGTH_LONG).show();
-                                    UserDetails user = new UserDetails(name.getText().toString(), username.getText().toString());
-                                    reference.child("User").child(auth.getCurrentUser().getUid()).setValue(user);
-                                    setProfilePicture();
-                                    Intent intent = new Intent(SignUpPage.this, LoginPage.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            });
+                            Toast.makeText(SignUpPage.this, "Your account is created successfully", Toast.LENGTH_LONG).show();
+                            UserDetails user = new UserDetails(name.getText().toString(), username.getText().toString());
+                            reference.child("User").child(auth.getCurrentUser().getUid()).setValue(user);
+                            setProfilePicture();
+                            Intent intent = new Intent(SignUpPage.this, LoginPage.class);
+                            startActivity(intent);
+                            finish();
                         }
                         else
                         {

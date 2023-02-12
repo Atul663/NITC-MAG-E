@@ -87,6 +87,7 @@
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="620dp"
+        android:contentDescription="All article"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

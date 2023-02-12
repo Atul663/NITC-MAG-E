@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.nitcmag_e.MainActivity;
 import com.example.nitcmag_e.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,7 +79,12 @@ public class LoginPage extends AppCompatActivity {
                         finish();
                     }
                     else {
-                        Toast.makeText(LoginPage.this, "Please verify your email. ", Toast.LENGTH_SHORT).show();
+                        auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(LoginPage.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
             }
