@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nitcmag_e.MainActivity;
@@ -22,7 +23,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class LoginPage extends AppCompatActivity {
 
     EditText username,password;
-    Button signin, signUp;
+    Button signin;
+
+    TextView signUp, forgotPassword;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     @Override
@@ -34,6 +37,7 @@ public class LoginPage extends AppCompatActivity {
     password = findViewById(R.id.editTextTextPassword);
     signin = findViewById(R.id.button);
     signUp = findViewById(R.id.signUpButtonLogin);
+    forgotPassword = findViewById(R.id.textViewForgotPassword);
 
     signin.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -53,6 +57,13 @@ public class LoginPage extends AppCompatActivity {
             } else {
                 Toast.makeText(LoginPage.this, "Please enter a valid email id", Toast.LENGTH_SHORT).show();
             }
+        }
+    });
+
+    forgotPassword.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
         }
     });
 
