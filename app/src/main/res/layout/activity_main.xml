@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="?attr/actionBarSize"
         android:layout_marginBottom="544dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonAddPost"

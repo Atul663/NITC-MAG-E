@@ -9,4 +9,15 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
+
+    <string-array name="categoryList">
+
+        <item>Home</item>
+        <item>Fest</item>
+        <item>Technical</item>
+        <item>Sports</item>
+        <item>Educational</item>
+
+
+    </string-array>
 </resources>
