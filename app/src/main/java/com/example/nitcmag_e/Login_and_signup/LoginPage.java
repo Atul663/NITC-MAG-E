@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nitcmag_e.MainActivity;
+import com.example.nitcmag_e.MainActivity2;
 import com.example.nitcmag_e.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -85,7 +86,7 @@ public class LoginPage extends AppCompatActivity {
                     if(auth.getCurrentUser().isEmailVerified())
                     {
                         Toast.makeText(LoginPage.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginPage.this, MainActivity.class);
+                        Intent intent = new Intent(LoginPage.this, MainActivity2.class);
                         startActivity(intent);
                         finish();
                     }
