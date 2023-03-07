@@ -12,38 +12,32 @@
         android:theme="@style/Theme.NitcMage"
         tools:targetApi="31">
         <activity
-            android:name=".AddPost"
-            android:exported="false" >
-
-
-        </activity>
-        <activity
-            android:name=".getStarted.splashScreen"
+            android:name=".MainActivity2"
             android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".getStarted.getStartedPage"
-            android:exported="true"></activity>
-        <activity
-            android:name=".Login_and_signup.SignUpPage"
-            android:exported="true" >
-
-
-
-        </activity>
-        <activity
-            android:name=".Login_and_signup.LoginPage"
-            android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddPost"
+            android:exported="false"></activity>
+        <activity
+            android:name=".getStarted.splashScreen"
+            android:exported="true"></activity>
+        <activity
+            android:name=".getStarted.getStartedPage"
+            android:exported="true" />
+        <activity
+            android:name=".Login_and_signup.SignUpPage"
+            android:exported="true"></activity>
+        <activity
+            android:name=".Login_and_signup.LoginPage"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
 
         </activity>
     </application>
