@@ -37,7 +37,7 @@ public class AddPostFragement extends Fragment {
     TextView signout;
     Button articleImage, submit;
     EditText title,description;
-    String item[] = {"Select Category","Home","Educational","Technical","Educational","Fest"};
+    String item[] = {"Select Category","Home","Educational","Technical","Sport","Fest"};
     ArrayAdapter<String > arrayAdapter;
     Spinner autoCompleteTextView;
 

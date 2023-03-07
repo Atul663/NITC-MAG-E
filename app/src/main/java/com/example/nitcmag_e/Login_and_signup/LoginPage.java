@@ -20,6 +20,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginPage extends AppCompatActivity {
 
@@ -29,6 +35,9 @@ public class LoginPage extends AppCompatActivity {
     TextView signUp, forgotPassword;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference reference = database.getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +90,18 @@ public class LoginPage extends AppCompatActivity {
         auth.signInWithEmailAndPassword(userEmailId,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful())
-                {
-                    if(auth.getCurrentUser().isEmailVerified())
+                if(task.isSuccessful()) {
+                    FirebaseUser user = auth.getCurrentUser();
+
+                    if(user.getUid().equals("UO9GbdDNhVPuWDvcofJRoWLeJH72"))
+                    {
+                        System.out.println("hii");
+                        Toast.makeText(LoginPage.this, "Sign in successful", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(LoginPage.this, MainActivity2.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else if(auth.getCurrentUser().isEmailVerified())
                     {
                         Toast.makeText(LoginPage.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginPage.this, MainActivity2.class);

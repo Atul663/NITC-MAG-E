@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,7 +10,6 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:layout_marginBottom="544dp"
         android:background="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,15 +24,14 @@
                 android:id="@+id/navigationDrawerIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/baseline_drag_handle_24"
-                />
+                android:src="@drawable/baseline_drag_handle_24" />
 
 
             <TextView
-                android:layout_toRightOf="@+id/navigationDrawerIcon"
-                android:layout_margin="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:layout_toRightOf="@+id/navigationDrawerIcon"
                 android:text="@string/nitc_mag_e"
                 android:textColor="#03A9F4"
                 android:textSize="20sp"
@@ -43,6 +42,14 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <include layout="@layout/content_main"/>
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_main"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
