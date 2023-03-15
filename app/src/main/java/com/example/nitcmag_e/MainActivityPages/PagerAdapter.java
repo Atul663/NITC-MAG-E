@@ -1,4 +1,4 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.MainActivityPages;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

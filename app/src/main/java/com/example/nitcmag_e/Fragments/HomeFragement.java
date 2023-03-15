@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.nitcmag_e.FragmentAdapters.EducationalAdapter;
-import com.example.nitcmag_e.ModelClass;
+import com.example.nitcmag_e.FragmentAdapters.HomeAdapter;
+import com.example.nitcmag_e.FragmentAdapters.ModelClass;
 import com.example.nitcmag_e.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +27,7 @@ import java.util.List;
 
 public class HomeFragement extends Fragment {
     List<ModelClass> articleList;
-    EducationalAdapter adapter;
+    HomeAdapter adapter;
     RecyclerView recyclerView;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
@@ -56,10 +56,13 @@ public class HomeFragement extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 modelClass = snapshot.getValue(ModelClass.class);
-                articleList.add(modelClass);
-                modelClass.setId(snapshot.getKey());
-                System.out.println(snapshot.getKey());
-                adapter.notifyDataSetChanged();
+                String cat = snapshot.child("category").getValue().toString();
+                if(modelClass.getCategory().equalsIgnoreCase("home")) {
+
+                    articleList.add(modelClass);
+                    modelClass.setId(snapshot.getKey());
+                    adapter.notifyDataSetChanged();
+                }
 
 
             }
@@ -84,7 +87,7 @@ public class HomeFragement extends Fragment {
 
             }
         });
-        adapter = new EducationalAdapter(articleList);
+        adapter = new HomeAdapter(articleList, getContext());
         recyclerView.setAdapter(adapter);
     }
 }

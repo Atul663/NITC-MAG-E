@@ -1,4 +1,4 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.PostArticle;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -19,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nitcmag_e.MainActivityPages.MainActivity2;
+import com.example.nitcmag_e.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -170,16 +172,14 @@ public class AddPostFragement extends Fragment {
                             reference.child("Article").child(key).child("Article Image").setValue(filePath).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
-                                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
-
                         }
                     });
                 }
@@ -197,4 +197,5 @@ public class AddPostFragement extends Fragment {
             reference.child("Article").child(key).child("Article Image").setValue("null");
         }
     }
+
 }

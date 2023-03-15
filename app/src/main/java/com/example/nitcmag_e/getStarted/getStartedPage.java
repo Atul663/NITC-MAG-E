@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.nitcmag_e.MainActivity;
+import com.example.nitcmag_e.MainActivityPages.MainActivity2;
 import com.example.nitcmag_e.R;
 
 public class getStartedPage extends AppCompatActivity {
@@ -21,7 +21,7 @@ public class getStartedPage extends AppCompatActivity {
 
         if(restorePrefData())
         {
-            Intent intent = new Intent(getStartedPage.this, MainActivity.class);
+            Intent intent = new Intent(getStartedPage.this, MainActivity2.class);
             startActivity(intent);
             finish();
         }
@@ -32,7 +32,7 @@ public class getStartedPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 savrPrefsData();
-                Intent intent = new Intent(getStartedPage.this, MainActivity.class);
+                Intent intent = new Intent(getStartedPage.this, MainActivity2.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,16 +1,25 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.FragmentAdapters;
 
 import java.security.SecureRandom;
 
 public class ModelClass {
-    String title,desc,id,category;
+    String title,desc,id,category,img;
 
     public ModelClass(){}
 
-    public ModelClass(String title, String desc,String category) {
+    public ModelClass(String title, String desc,String category,String img) {
         this.title = title;
         this.category = category;
         this.desc = desc;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getCategory() {
