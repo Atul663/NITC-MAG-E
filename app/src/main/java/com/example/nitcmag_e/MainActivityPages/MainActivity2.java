@@ -1,4 +1,4 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.MainActivityPages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.nitcmag_e.PostArticle.AddPostFragement;
 import com.example.nitcmag_e.Login_and_signup.LoginPage;
 import com.example.nitcmag_e.Login_and_signup.SignUpPage;
+import com.example.nitcmag_e.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -110,6 +112,8 @@ public class MainActivity2 extends AppCompatActivity {
                     ft.commit();
                 }else {
                     auth.signOut();
+                    Intent intent = new Intent(MainActivity2.this,LoginPage.class);
+                    startActivity(intent);
                     finishAffinity();
                 }
 
@@ -149,6 +153,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                 }
             });
+//            auth.signOut();
         }
 
         else {
@@ -194,5 +199,8 @@ public class MainActivity2 extends AppCompatActivity {
             inflateMenu('s');
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.PostArticle;
 
 public class ArticleDetails {
     public String title,description,category,authorUid;

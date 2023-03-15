@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nitcmag_e.R;
-import com.example.nitcmag_e.UserDetails;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -117,7 +116,6 @@ public class SignUpPage extends AppCompatActivity {
     }
 
     private void signUpFirebase(String userEmailId, String userPassword) {
-
         auth.createUserWithEmailAndPassword(userEmailId,userPassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

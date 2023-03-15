@@ -1,4 +1,4 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.Login_and_signup;
 
 public class UserDetails {
     public String name,role,email;

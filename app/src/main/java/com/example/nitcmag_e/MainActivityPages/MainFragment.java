@@ -1,20 +1,25 @@
-package com.example.nitcmag_e;
+package com.example.nitcmag_e.MainActivityPages;
+
+import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.nitcmag_e.Login_and_signup.LoginPage;
+import com.example.nitcmag_e.PostArticle.AddPostFragement;
+import com.example.nitcmag_e.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class MainFragment extends Fragment {
 
     AlertDialog dialog;
     TabLayout tabLayout;
@@ -41,29 +46,30 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
 
+    public MainFragment() {}
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        toolbar = findViewById(R.id.toolBar);
-        setSupportActionBar(toolbar);
+//        toolbar = getView().findViewById(R.id.toolBar);
+//        getActivity().setSupportActionBar(toolbar);
+//
+        tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
+        home = (TabItem) view.findViewById(R.id.home);
+        sport = (TabItem) view.findViewById(R.id.sport);
+        educational = (TabItem) view.findViewById(R.id.educational);
+        fest = (TabItem) view.findViewById(R.id.fest);
+        technical = (TabItem) view.findViewById(R.id.technical);
 
-        tabLayout = findViewById(R.id.tabLayout);
-        home = findViewById(R.id.home);
-        sport = findViewById(R.id.sport);
-        educational = findViewById(R.id.educational);
-        fest = findViewById(R.id.fest);
-        technical = findViewById(R.id.technical);
+        addPost = (FloatingActionButton) view.findViewById(R.id.floatingActionButtonAddPost);
 
-        addPost = findViewById(R.id.floatingActionButtonAddPost);
+        viewPager = (ViewPager) view.findViewById(R.id.fragment);
 
-        viewPager = findViewById(R.id.fragment);
-
-        pagerAdapter = new PagerAdapter(getSupportFragmentManager(), 5);
+        pagerAdapter = new PagerAdapter(getActivity().getSupportFragmentManager(), 5);
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -95,13 +101,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(user != null)
                 {
-                    Intent intent = new Intent(MainActivity.this, AddPost.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(), AddPost.class);
+//                    startActivity(intent);
+
+                    FragmentManager fm = getParentFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.replace(R.id.content, new AddPostFragement()).addToBackStack("home Page");
+                    ft.commit();
                 }
 
                 else
                 {
-                    AlertDialog.Builder dialogLogin = new AlertDialog.Builder(MainActivity.this);
+                    AlertDialog.Builder dialogLogin = new AlertDialog.Builder(getActivity());
                     View loginView = getLayoutInflater().inflate(R.layout.dialog_login,null);
 
                     username = loginView.findViewById(R.id.editTextDialogUsername);
@@ -117,16 +128,16 @@ public class MainActivity extends AppCompatActivity {
                             String userPassword = password.getText().toString();
 
                             if (userEmailId.isEmpty() && userPassword.isEmpty()) {
-                                Toast.makeText(MainActivity.this, "Please enter the Email id and Password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter the Email id and Password", Toast.LENGTH_SHORT).show();
                             } else if (userEmailId.isEmpty()) {
-                                Toast.makeText(MainActivity.this, "Please enter a Email id", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a Email id", Toast.LENGTH_SHORT).show();
 
                             } else if (userPassword.isEmpty()) {
-                                Toast.makeText(MainActivity.this, "Please enter a password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a password", Toast.LENGTH_SHORT).show();
                             } else if (Patterns.EMAIL_ADDRESS.matcher(userEmailId).matches()) {
                                 signInWithFirebase(userEmailId, userPassword);
                             } else {
-                                Toast.makeText(MainActivity.this, "Please enter a valid email id", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please enter a valid email id", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -136,7 +147,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        return view;
     }
+
+
 
     private void signInWithFirebase(String userEmailId, String userPassword) {
         auth.signInWithEmailAndPassword(userEmailId,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -147,22 +161,26 @@ public class MainActivity extends AppCompatActivity {
                     if(auth.getCurrentUser().isEmailVerified())
                     {
                         dialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Sign in successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, AddPost.class);
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(getActivity(), "Sign in successful", Toast.LENGTH_SHORT).show();
+                        FragmentManager fm = getParentFragmentManager();
+                        FragmentTransaction ft = fm.beginTransaction();
+                        ft.replace(R.id.content, new AddPostFragement());
+                        ft.commit();
+//                        Intent intent = new Intent(getActivity(), AddPost.class);
+//                        startActivity(intent);
+////                        finish();
                     }
                     else {
                         auth.getCurrentUser().sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(MainActivity.this, "Please verify your email.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Please verify your email.", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 }
             }
+
         });
     }
-
 }

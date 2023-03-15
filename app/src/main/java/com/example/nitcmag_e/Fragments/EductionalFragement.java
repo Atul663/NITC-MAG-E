@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nitcmag_e.FragmentAdapters.EducationalAdapter;
-import com.example.nitcmag_e.ModelClass;
+import com.example.nitcmag_e.FragmentAdapters.ModelClass;
 import com.example.nitcmag_e.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,10 +55,13 @@ public class EductionalFragement extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 modelClass = snapshot.getValue(ModelClass.class);
-                articleList.add(modelClass);
-                modelClass.setId(snapshot.getKey());
-                System.out.println(snapshot.getKey());
-                adapter.notifyDataSetChanged();
+                if(modelClass.getCategory().equalsIgnoreCase("educational")) {
+                    articleList.add(modelClass);
+                    modelClass.setId(snapshot.getKey());
+
+
+                    adapter.notifyDataSetChanged();
+                }
 
 
             }
